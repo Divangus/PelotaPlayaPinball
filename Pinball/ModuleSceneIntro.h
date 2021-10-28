@@ -19,6 +19,7 @@ public:
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
 
 public:
+	//classe
 	p2List<PhysBody*> circles;
 	p2List<PhysBody*> boxes;
 	p2List<PhysBody*> ricks;
@@ -32,6 +33,10 @@ public:
 	PhysBody* left_circle;
 	
 	bool sensed;
+
+	//Muelle/Spring
+	PhysBody* muellesito;
+	PhysBody* StaticMuelle;
 
 	SDL_Texture* circle;
 	SDL_Texture* box;

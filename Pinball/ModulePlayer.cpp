@@ -22,32 +22,7 @@ bool ModulePlayer::Start()
 	//Rectangles and Circle
 	circles.add(App->physics->CreateCircle(515, 826, 10));
 	circles.getLast()->data->listener = this;
-	muellesito=App->physics->CreateRectangle(515, 850, 30, 20);
-	StaticMuelle = App->physics->CreateRectangle(515, 930, 30, 20);
-	StaticMuelle->body->SetType(b2_staticBody);
 
-
-	//Nacimiento del muelle
-	b2DistanceJointDef MuelleJointDef;
-
-	MuelleJointDef.bodyA = muellesito->body;
-
-	MuelleJointDef.bodyB = StaticMuelle->body;
-
-	MuelleJointDef.localAnchorA.Set(0, 0);
-
-	MuelleJointDef.localAnchorB.Set(0, 0);
-
-	MuelleJointDef.length = 2;
-
-	MuelleJointDef.collideConnected = true;
-
-	MuelleJointDef.frequencyHz =4.0f;
-	MuelleJointDef.dampingRatio = 0.5f;
-		
-	
-	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
-	
 	
 	return true;
 }
@@ -67,19 +42,6 @@ update_status ModulePlayer::Update()
 	int x, y;
 	c->data->GetPosition(x, y);
 	App->renderer->Blit(bola, x, y, NULL, 1.0f, c->data->GetRotation());
-
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		
-		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
-		
-		
-		
-	}
 	
-	/*b2DistanceJointDef MuelleJoint;
-	MuelleJoint.bodyA = muellesito->body;
-	MuelleJoint.bodyB = StacticMuelle->body;*/
-
 	return UPDATE_CONTINUE;
 }

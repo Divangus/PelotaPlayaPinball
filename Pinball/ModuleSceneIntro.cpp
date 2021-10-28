@@ -80,6 +80,30 @@ bool ModuleSceneIntro::Start()
 
 	b2RevoluteJoint* joint_left = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftRevJoint);
 
+	//Muelle/Spring
+	muellesito = App->physics->CreateRectangle(515, 850, 30, 20);
+	StaticMuelle = App->physics->CreateRectangle(515, 930, 30, 20);
+	StaticMuelle->body->SetType(b2_staticBody);
+	//Nacimiento del muelle
+	b2DistanceJointDef MuelleJointDef;
+
+	MuelleJointDef.bodyA = muellesito->body;
+
+	MuelleJointDef.bodyB = StaticMuelle->body;
+
+	MuelleJointDef.localAnchorA.Set(0, 0);
+
+	MuelleJointDef.localAnchorB.Set(0, 0);
+
+	MuelleJointDef.length = 2;
+
+	MuelleJointDef.collideConnected = true;
+
+	MuelleJointDef.frequencyHz = 4.0f;
+	MuelleJointDef.dampingRatio = 0.5f;
+
+
+	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
 	return ret;
 }
@@ -95,6 +119,14 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+	//Muelle/Spring
+	
+
+
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
 	{
