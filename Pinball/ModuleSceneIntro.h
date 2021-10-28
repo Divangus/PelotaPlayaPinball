@@ -38,6 +38,16 @@ public:
 	PhysBody* muellesito;
 	PhysBody* StaticMuelle;
 
+	//Bonus
+	PhysBody* Bonus1;
+	PhysBody* Bonus2;
+	PhysBody* Bonus3;
+	p2List<PhysBody*>  SensorBonus1;
+	PhysBody* SensorBonus2;
+	PhysBody* SensorBonus3;
+
+	SDL_Texture* Bonus;
+
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;

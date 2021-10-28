@@ -27,6 +27,7 @@ bool ModuleSceneIntro::Start()
 
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
+	Bonus= App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/Pinball2.png");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
@@ -67,26 +68,22 @@ bool ModuleSceneIntro::Start()
 	muellesito = App->physics->CreateRectangle(515, 850, 30, 20);
 	StaticMuelle = App->physics->CreateRectangle(515, 930, 30, 20);
 	StaticMuelle->body->SetType(b2_staticBody);
-	//Nacimiento del muelle
+
+	//Joint del muelle
 	b2DistanceJointDef MuelleJointDef;
-
 	MuelleJointDef.bodyA = muellesito->body;
-
 	MuelleJointDef.bodyB = StaticMuelle->body;
-
 	MuelleJointDef.localAnchorA.Set(0, 0);
-
 	MuelleJointDef.localAnchorB.Set(0, 0);
-
 	MuelleJointDef.length = 2;
-
 	MuelleJointDef.collideConnected = true;
-
 	MuelleJointDef.frequencyHz = 4.0f;
 	MuelleJointDef.dampingRatio = 0.5f;
-
-
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
+
+	//Bonus en la izquierda
+	SensorBonus1.add(App->physics->CreateRectangleSensor(85, 650, 20, 25));
+		
 
 	return ret;
 }
@@ -102,10 +99,14 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+
+	//Bonus Sensor
+	p2List_item<PhysBody*>* a = SensorBonus1.getFirst();
+	int x, y;
+	a->data->GetPosition(x, y);
+	App->renderer->Blit(Bonus, x, y, NULL, 1.0f, a->data->GetRotation());
 	//Muelle/Spring
 	
-
-
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
