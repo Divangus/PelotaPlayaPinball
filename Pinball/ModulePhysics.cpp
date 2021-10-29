@@ -189,8 +189,8 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
 
 	for(uint i = 0; i < size / 2; ++i)
 	{
-		p[i].x = PIXEL_TO_METERS(points[i * 2 + 0]/3);
-		p[i].y = PIXEL_TO_METERS(points[i * 2 + 1]/3);
+		p[i].x = PIXEL_TO_METERS(points[i * 2 + 0]);
+		p[i].y = PIXEL_TO_METERS(points[i * 2 + 1]);
 	}
 
 	shape.CreateLoop(p, size / 2);
