@@ -112,12 +112,12 @@ update_status ModuleSceneIntro::Update()
 		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		right->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		left->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
