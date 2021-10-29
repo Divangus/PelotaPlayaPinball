@@ -83,9 +83,6 @@ bool ModuleSceneIntro::Start()
 
 	//Bonus en la izquierda
 	SensorBonus1.add(App->physics->CreateRectangleSensor(85, 650, 20, 25));
-	
-	bumper = App->physics->CreateCircleStatic(109, 123, 25);
-	bumper->body->SetType(b2_kinematicBody);
 
 
 	return ret;
