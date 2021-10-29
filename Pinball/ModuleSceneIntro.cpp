@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
 
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
-	Bonus= App->textures->Load("pinball/crate.png");
+	Bonus= App->textures->Load("pinball/Bonus.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
@@ -86,7 +86,9 @@ bool ModuleSceneIntro::Start()
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
 	//Bonus en la izquierda
-	SensorBonus1.add(App->physics->CreateRectangleSensor(85, 650, 20, 25));
+	SensorBonus1.add(App->physics->CreateRectangleSensor(58, 415, 9, 15));
+	SensorBonus2.add(App->physics->CreateRectangleSensor(49, 430, 9, 15));
+	SensorBonus3.add(App->physics->CreateRectangleSensor(41, 445, 9, 15));
 
 
 	return ret;
@@ -103,12 +105,11 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+	//Draw Bonus
+	App->renderer->Blit(Bonus, 58, 415, NULL, 1.0f);
+	App->renderer->Blit(Bonus, 49, 430, NULL, 1.0f);
+	App->renderer->Blit(Bonus, 41, 445, NULL, 1.0f);
 
-	//Bonus Sensor
-	p2List_item<PhysBody*>* a = SensorBonus1.getFirst();
-	int x, y;
-	a->data->GetPosition(x, y);
-	App->renderer->Blit(Bonus, x, y, NULL, 1.0f, a->data->GetRotation());
 	//Muelle/Spring
 	
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)

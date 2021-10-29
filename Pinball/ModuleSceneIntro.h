@@ -40,14 +40,11 @@ public:
 	PhysBody* StaticMuelle;
 
 	//Bonus
-	PhysBody* Bonus1;
-	PhysBody* Bonus2;
-	PhysBody* Bonus3;
-	p2List<PhysBody*>  SensorBonus1;
-	PhysBody* SensorBonus2;
-	PhysBody* SensorBonus3;
-
+	p2List<PhysBody*> SensorBonus1;
+	p2List<PhysBody*> SensorBonus2;
+	p2List<PhysBody*> SensorBonus3;
 	SDL_Texture* Bonus;
+
 
 	SDL_Texture* circle;
 	SDL_Texture* box;
