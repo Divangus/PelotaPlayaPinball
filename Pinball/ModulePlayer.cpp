@@ -20,7 +20,7 @@ bool ModulePlayer::Start()
 	//Textures
 	bola = App->textures->Load("pinball/bola.png");
 	//Rectangles and Circle
-	circles.add(App->physics->CreateCircle(515, 826, 10));
+	circles.add(App->physics->CreateCircle(385, 477, 10));
 	circles.getLast()->data->listener = this;
 
 	

@@ -65,8 +65,8 @@ bool ModuleSceneIntro::Start()
 	b2RevoluteJoint* joint_left = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftRevJoint);
 
 	//Muelle/Spring
-	muellesito = App->physics->CreateRectangle(515, 850, 30, 20);
-	StaticMuelle = App->physics->CreateRectangle(515, 930, 30, 20);
+	muellesito = App->physics->CreateRectangle(385, 664, 30, 20);
+	StaticMuelle = App->physics->CreateRectangle(385, 744, 30, 20);
 	StaticMuelle->body->SetType(b2_staticBody);
 
 	//Joint del muelle
@@ -83,7 +83,7 @@ bool ModuleSceneIntro::Start()
 
 	//Bonus en la izquierda
 	SensorBonus1.add(App->physics->CreateRectangleSensor(85, 650, 20, 25));
-		
+
 
 	return ret;
 }
