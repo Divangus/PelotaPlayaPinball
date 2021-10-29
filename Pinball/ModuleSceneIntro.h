@@ -57,4 +57,9 @@ public:
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on=true;
+
+	int score = 0000;
+
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
 };

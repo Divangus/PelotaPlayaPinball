@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
+#include "ModuleFonts.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -33,6 +34,9 @@ bool ModuleSceneIntro::Start()
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 
 	map();
+
+	char lookupTable[] = { "0123456789 0123456789" };
+	scoreFont = App->fonts->Load("pinball/fonts/font1.png", lookupTable, 2);
 
 	right = App->physics->CreateRectangle(238, 703, 35, 12);
 	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
@@ -241,6 +245,17 @@ update_status ModuleSceneIntro::Update()
 		if(normal.x != 0.0f)
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
+
+
+	sprintf_s(scoreText, 10, "%8d", score);
+	App->fonts->BlitText(50, 50, scoreFont, scoreText);
+
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
+	{
+		LOG("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		score += 100;
+	}
+
 
 	return UPDATE_CONTINUE;
 }
