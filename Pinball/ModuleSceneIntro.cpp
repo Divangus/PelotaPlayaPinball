@@ -181,7 +181,7 @@ update_status ModuleSceneIntro::Update()
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 	}
 	//background
-	//App->renderer->Blit(background, 0, 0, NULL, 1.0f);
+	App->renderer->Blit(background, 0, 0, NULL, 1.0f);
 	// Prepare for raycast ------------------------------------------------------
 	
 	iPoint mouse;
@@ -293,7 +293,7 @@ void ModuleSceneIntro::map()
 	};
 
 	elephs.add(App->physics->CreateChain(0, 0, elephant, 76));*/
-	int elephant[106] = {
+	/*int elephant[106] = {
 			848, 3102,
 			1440, 2602,
 			1431, 1680,
@@ -349,7 +349,64 @@ void ModuleSceneIntro::map()
 			871, 3197
 	};
 
-	elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
+	elephs.add(App->physics->CreateChain(0, 0, elephant, 106));*/
+int elephant[106] = {
+			401, 753,
+			401, 227,
+			368, 149,
+			322, 89,
+			262, 51,
+			210, 43,
+			176, 45,
+			132, 63,
+			96, 97,
+			80, 123,
+			86, 150,
+			118, 157,
+			130, 152,
+			133, 158,
+			111, 190,
+			120, 254,
+			105, 279,
+			97, 328,
+			87, 344,
+			97, 383,
+			92, 386,
+			69, 289,
+			39, 289,
+			68, 405,
+			64, 406,
+			60, 393,
+			30, 452,
+			30, 659,
+			168, 779,
+			168, 790,
+			11, 789,
+			16, 27,
+			409, 27,
+			409, 782,
+			209, 789,
+			213, 774,
+			351, 663,
+			351, 438,
+			335, 380,
+			339, 327,
+			332, 298,
+			352, 249,
+			356, 218,
+			338, 181,
+			317, 215,
+			305, 209,
+			325, 173,
+			313, 164,
+			314, 141,
+			347, 178,
+			363, 213,
+			369, 284,
+			369, 753
+};
+
+elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
 
 	int wallsup[46] = {
 		1434, 1682,
