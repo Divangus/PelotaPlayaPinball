@@ -29,8 +29,9 @@ public:
 	PhysBody* sensor;
 	PhysBody* right;
 	PhysBody* right_circle;
-	PhysBody* left;
+	PhysBody* left;	
 	PhysBody* left_circle;
+	PhysBody* bumper;
 	
 	bool sensed;
 
