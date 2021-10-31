@@ -45,6 +45,8 @@ public:
 	p2List<PhysBody*> SensorBonus3;
 	SDL_Texture* Bonus;
 
+	//Rectangulo negro del Score
+	SDL_Texture* BlackRectangle;
 
 	SDL_Texture* circle;
 	SDL_Texture* box;

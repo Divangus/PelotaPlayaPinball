@@ -26,11 +26,11 @@ bool ModuleSceneIntro::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
 	Bonus= App->textures->Load("pinball/Bonus.png");
 	rick = App->textures->Load("pinball/rick_head.png");
-	background = App->textures->Load("pinball/pinballUltimate.png");
+	background = App->textures->Load("pinball/pinballUltimate.png");//background
+	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 
 	map();
@@ -85,11 +85,10 @@ bool ModuleSceneIntro::Start()
 	MuelleJointDef.dampingRatio = 0.5f;
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
-	//Bonus en la izquierda
+	//Bonus rojo en la izquierda
 	SensorBonus1.add(App->physics->CreateRectangleSensor(58, 415, 9, 15));
 	SensorBonus2.add(App->physics->CreateRectangleSensor(49, 430, 9, 15));
 	SensorBonus3.add(App->physics->CreateRectangleSensor(41, 445, 9, 15));
-
 
 	return ret;
 }
@@ -109,6 +108,8 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Bonus, 58, 415, NULL, 1.0f);
 	App->renderer->Blit(Bonus, 49, 430, NULL, 1.0f);
 	App->renderer->Blit(Bonus, 41, 445, NULL, 1.0f);
+
+
 
 	//Muelle/Spring
 	
@@ -247,6 +248,8 @@ update_status ModuleSceneIntro::Update()
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
 
+	//Black Rectangle
+	App->renderer->Blit(BlackRectangle, 49, 52, NULL, 1.0f);
 
 	sprintf_s(scoreText, 10, "%8d", score);
 	App->fonts->BlitText(50, 50, scoreFont, scoreText);
@@ -257,6 +260,7 @@ update_status ModuleSceneIntro::Update()
 		score += 100;
 	}
 
+	
 
 	return UPDATE_CONTINUE;
 }
