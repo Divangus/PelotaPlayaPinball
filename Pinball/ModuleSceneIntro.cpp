@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModuleFonts.h"
+#include "p2List.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -406,20 +407,20 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	if(bodyA)
-	{
-		bodyA->GetPosition(x, y);
-		if (x == 247 && y == 1660) {
-			Bbonus += 1;
-		}
-		
-	}
-	if (Bbonus == 3) {
+	p2List_item<Sensores*>* Sensores = TiposSensores.getFirst();
 
+	while (Sensores != NULL) {
+		if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
+			if (Sensores->data->tipo == Sensores::COINS) {
+
+			}
+			if (Sensores->data->tipo == Sensores::DEAD) {
+
+			}
+			if (Sensores->data->tipo == Sensores::TUNEL) {
+
+			}
+		}
 	}
-	if(bodyB)
-	{
-		bodyB->GetPosition(x, y);
-		
-	}
+	
 }

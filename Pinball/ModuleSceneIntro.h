@@ -7,7 +7,13 @@
 class PhysBody;
 
 struct Sensores {
+	enum col{
+		COINS,
+		DEAD,
+		TUNEL,
+	};
 	PhysBody* Sensor;
+	col tipo;
 };
 
 class ModuleSceneIntro : public Module
@@ -45,7 +51,7 @@ public:
 	PhysBody* StaticMuelle;
 
 	//Bonus
-	p2List<PhysBody*> BonusClass;
+	p2List<Sensores*> TiposSensores;
 	SDL_Texture* Bonus;
 
 	//Rectangulo negro del Score
