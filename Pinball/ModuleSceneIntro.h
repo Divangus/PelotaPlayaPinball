@@ -40,9 +40,9 @@ public:
 	PhysBody* StaticMuelle;
 
 	//Bonus
-	p2List<PhysBody*> SensorBonus1;
-	p2List<PhysBody*> SensorBonus2;
-	p2List<PhysBody*> SensorBonus3;
+	PhysBody* SensorBonus1;
+	PhysBody* SensorBonus2;
+	PhysBody* SensorBonus3;
 	SDL_Texture* Bonus;
 
 	//Rectangulo negro del Score
@@ -58,7 +58,7 @@ public:
 	bool ray_on=true;
 
 	int score = 0000;
-
+	int Bbonus = 0;
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 };
