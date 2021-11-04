@@ -6,6 +6,10 @@
 
 class PhysBody;
 
+struct Sensores {
+	PhysBody* Sensor;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -26,6 +30,7 @@ public:
 	p2List<PhysBody*> elephs;
 	p2List<PhysBody*> walls;
 	p2List<PhysBody*> wal1;
+	
 	PhysBody* sensor;
 	PhysBody* right;
 	PhysBody* right_circle;
@@ -40,9 +45,7 @@ public:
 	PhysBody* StaticMuelle;
 
 	//Bonus
-	PhysBody* SensorBonus1;
-	PhysBody* SensorBonus2;
-	PhysBody* SensorBonus3;
+	p2List<PhysBody*> BonusClass;
 	SDL_Texture* Bonus;
 
 	//Rectangulo negro del Score

@@ -8,6 +8,7 @@
 #include "ModulePhysics.h"
 #include "ModuleFonts.h"
 
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	circle = box = rick = NULL;
@@ -94,14 +95,14 @@ bool ModuleSceneIntro::Start()
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
 	//Bonus rojo en la izquierda
-	
-	SensorBonus1 = App->physics->CreateRectangleSensor(58, 415, 9, 15);
-	SensorBonus2 = App->physics->CreateRectangleSensor(49, 430, 9, 15);
-	SensorBonus3 = App->physics->CreateRectangleSensor(41, 445, 9, 15);
+	Sensores Bonus[3];
+	Bonus[0].Sensor = App->physics->CreateRectangleSensor(58, 415, 9, 15);
+	Bonus[1].Sensor = App->physics->CreateRectangleSensor(49, 430, 9, 15);
+	Bonus[2].Sensor = App->physics->CreateRectangleSensor(41, 445, 9, 15);
 
-	SensorBonus1->listener = this;
-	SensorBonus2->listener = this;
-	SensorBonus3->listener = this;
+	Bonus[0].Sensor->listener = this;
+	Bonus[1].Sensor->listener = this;
+	Bonus[2].Sensor->listener = this;
 	return ret;
 }
 
@@ -405,16 +406,17 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	
 	if(bodyA)
 	{
 		bodyA->GetPosition(x, y);
 		if (x == 247 && y == 1660) {
-
+			Bbonus += 1;
 		}
 		
 	}
+	if (Bbonus == 3) {
 
+	}
 	if(bodyB)
 	{
 		bodyB->GetPosition(x, y);
