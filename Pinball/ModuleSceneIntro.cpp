@@ -27,6 +27,8 @@ bool ModuleSceneIntro::Start()
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
 	box = App->textures->Load("pinball/crate.png");
+	flipperR = App->textures->Load("pinball/flipperR.png");
+	flipperL = App->textures->Load("pinball/flipperL.png");
 	Bonus= App->textures->Load("pinball/Bonus.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
@@ -43,7 +45,7 @@ bool ModuleSceneIntro::Start()
 
 	//flippers
 	//right flippers
-	right = App->physics->CreateRectangle(238, 703, 35, 12);
+	right = App->physics->CreateRectangle(238, 703, 36, 12);
 	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
 
 	b2RevoluteJointDef rightRevJoint;
@@ -59,7 +61,7 @@ bool ModuleSceneIntro::Start()
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
 	
 	//left flippers
-	left = App->physics->CreateRectangle(138, 703, 35, 12);
+	left = App->physics->CreateRectangle(138, 703, 36, 12);
 	left_circle = App->physics->CreateCircleStatic(138, 703, 6);
 
 	b2RevoluteJointDef leftRevJoint;
@@ -245,6 +247,7 @@ update_status ModuleSceneIntro::Update()
 		c = c->next;
 	}
 
+
 	// ray -----------------
 	if(ray_on == true)
 	{
@@ -260,6 +263,10 @@ update_status ModuleSceneIntro::Update()
 
 	//Black Rectangle
 	App->renderer->Blit(BlackRectangle, 49, 52, NULL, 1.0f);
+
+	App->renderer->Blit(flipperR, 238, 703, NULL, 1.0f, right->GetRotation());
+
+	App->renderer->Blit(flipperL, 138, 703, NULL, 1.0f, left->GetRotation());
 
 	sprintf_s(scoreText, 10, "%8d", score);
 	App->fonts->BlitText(50, 50, scoreFont, scoreText);
