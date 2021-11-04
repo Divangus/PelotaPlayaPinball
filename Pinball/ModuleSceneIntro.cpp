@@ -266,9 +266,9 @@ update_status ModuleSceneIntro::Update()
 	//Black Rectangle
 	App->renderer->Blit(BlackRectangle, 49, 52, NULL, 1.0f);
 
-	App->renderer->Blit(flipperR, 238, 703, NULL, 1.0f, right->GetRotation());
+	App->renderer->Blit(flipperR, 190, 700, NULL, 1.0f, right->GetRotation());
 
-	App->renderer->Blit(flipperL, 138, 703, NULL, 1.0f, left->GetRotation());
+	App->renderer->Blit(flipperL, 93, 700, NULL, 1.0f, left->GetRotation());
 
 	sprintf_s(scoreText, 10, "%8d", score);
 	App->fonts->BlitText(50, 50, scoreFont, scoreText);
