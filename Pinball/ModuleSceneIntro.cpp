@@ -38,7 +38,7 @@ bool ModuleSceneIntro::Start()
 	char lookupTable[] = { "0123456789 0123456789" };
 	scoreFont = App->fonts->Load("pinball/fonts/font1.png", lookupTable, 2);
 
-	right = App->physics->CreateRectangle(238, 703, 35, 12);
+	right = App->physics->CreateRectangle(238, 703, 36, 12);
 	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
 
 	b2RevoluteJointDef rightRevJoint;
@@ -53,7 +53,7 @@ bool ModuleSceneIntro::Start()
 
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
 	
-	left = App->physics->CreateRectangle(138, 703, 35, 12);
+	left = App->physics->CreateRectangle(138, 703, 36, 12);
 	left_circle = App->physics->CreateCircleStatic(138, 703, 6);
 
 	b2RevoluteJointDef leftRevJoint;
@@ -120,12 +120,12 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		right->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
+		right->body->ApplyForceToCenter(b2Vec2(0, -100), 1);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		left->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
+		left->body->ApplyForceToCenter(b2Vec2(0, -100), 1);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
