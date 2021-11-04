@@ -31,7 +31,8 @@ bool ModuleSceneIntro::Start()
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
 	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
-	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
+	bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");
+	music = App->audio->PlayMusic("pinball/Chocobo.ogg");
 
 	map();
 
@@ -401,6 +402,9 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if(bodyA)
 	{
 		bodyA->GetPosition(x, y);
+		if (x == 247 && y == 1660) {
+
+		}
 		
 	}
 

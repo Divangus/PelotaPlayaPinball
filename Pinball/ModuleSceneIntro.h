@@ -54,6 +54,7 @@ public:
 	SDL_Texture* background;
 	SDL_Texture* elephant;
 	uint bonus_fx;
+	uint music;
 	p2Point<int> ray;
 	bool ray_on=true;
 
