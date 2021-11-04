@@ -35,9 +35,13 @@ bool ModuleSceneIntro::Start()
 
 	map();
 
+	//Score
 	char lookupTable[] = { "0123456789 0123456789" };
 	scoreFont = App->fonts->Load("pinball/fonts/font1.png", lookupTable, 2);
 
+
+	//flippers
+	//right flippers
 	right = App->physics->CreateRectangle(238, 703, 35, 12);
 	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
 
@@ -53,6 +57,7 @@ bool ModuleSceneIntro::Start()
 
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
 	
+	//left flippers
 	left = App->physics->CreateRectangle(138, 703, 35, 12);
 	left_circle = App->physics->CreateCircleStatic(138, 703, 6);
 
@@ -68,7 +73,7 @@ bool ModuleSceneIntro::Start()
 
 	b2RevoluteJoint* joint_left = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftRevJoint);
 
-	//Muelle/Spring
+	//Muelle
 	muellesito = App->physics->CreateRectangle(385, 664, 30, 20);
 	StaticMuelle = App->physics->CreateRectangle(385, 744, 30, 20);
 	StaticMuelle->body->SetType(b2_staticBody);
@@ -86,10 +91,14 @@ bool ModuleSceneIntro::Start()
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
 	//Bonus rojo en la izquierda
-	SensorBonus1.add(App->physics->CreateRectangleSensor(58, 415, 9, 15));
-	SensorBonus2.add(App->physics->CreateRectangleSensor(49, 430, 9, 15));
-	SensorBonus3.add(App->physics->CreateRectangleSensor(41, 445, 9, 15));
+	
+	SensorBonus1 = App->physics->CreateRectangleSensor(58, 415, 9, 15);
+	SensorBonus2 = App->physics->CreateRectangleSensor(49, 430, 9, 15);
+	SensorBonus3 = App->physics->CreateRectangleSensor(41, 445, 9, 15);
 
+	SensorBonus1->listener = this;
+	SensorBonus2->listener = this;
+	SensorBonus3->listener = this;
 	return ret;
 }
 
@@ -256,7 +265,7 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 	{
-		LOG("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		LOG("add 100 score");
 		score += 100;
 	}
 
@@ -388,16 +397,16 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	/*
+	
 	if(bodyA)
 	{
 		bodyA->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
+		
 	}
 
 	if(bodyB)
 	{
 		bodyB->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
-	}*/
+		
+	}
 }
