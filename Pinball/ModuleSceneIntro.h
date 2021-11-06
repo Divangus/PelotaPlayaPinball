@@ -26,7 +26,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void map();
-	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 
 public:
 	//classe
