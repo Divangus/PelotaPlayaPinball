@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModuleFonts.h"
+#include "ModulePlayer.h"
 #include "p2List.h"
 
 
@@ -94,6 +95,11 @@ bool ModuleSceneIntro::Start()
 	MuelleJointDef.frequencyHz = 4.0f;
 	MuelleJointDef.dampingRatio = 0.5f;
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
+
+	//Sensor de muerte
+	Sensores Muerte;
+	Muerte.Sensor = App->physics->CreateRectangleSensor(185, 837, 120, 15);
+	Muerte.Sensor->listener = this;
 
 	//Bonus rojo en la izquierda
 	Sensores Bonus[3];
@@ -405,20 +411,30 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	int x, y;
 
-	App->audio->PlayFx(bonus_fx);
-
 	p2List_item<Sensores*>* Sensores = TiposSensores.getFirst();
 
 	while (Sensores != NULL) {
 		if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
 			if (Sensores->data->tipo == Sensores::COINS) {
-
+				App->audio->PlayFx(bonus_fx);
 			}
 			if (Sensores->data->tipo == Sensores::DEAD) {
-
+				if (App->player->position.y < 837) {
+					/*if (vida > 0) {
+						App->player->position.x = 385;
+						App->player->position.y = 477;
+					}*/
+				}
 			}
 			if (Sensores->data->tipo == Sensores::TUNEL) {
-
+				if (App->player->position.y < 300 && App->player->position.y > 287) {
+					App->player->position.x = 327;
+					App->player->position.y = 199;
+				}
+				if (App->player->position.y < 206 && App->player->position.y > 190) {
+					App->player->position.x = 48;
+					App->player->position.y = 293;
+				}
 			}
 		}
 	}

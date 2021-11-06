@@ -50,7 +50,7 @@ public:
 	PhysBody* muellesito;
 	PhysBody* StaticMuelle;
 
-	//Bonus
+	//Sensores
 	p2List<Sensores*> TiposSensores;
 	SDL_Texture* Bonus;
 
