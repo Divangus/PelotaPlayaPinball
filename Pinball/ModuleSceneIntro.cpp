@@ -130,6 +130,7 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Bonus, 41, 445, NULL, 1.0f);
 
 
+	
 
 	//Muelle/Spring
 	
@@ -278,7 +279,7 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(flipperL, 93, 700, NULL, 1.0f, left->GetRotation());
 
 	sprintf_s(scoreText, 10, "%8d", score);
-	App->fonts->BlitText(50, 50, scoreFont, scoreText);
+	App->fonts->BlitText(30, 50, scoreFont, scoreText);
 
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 	{
