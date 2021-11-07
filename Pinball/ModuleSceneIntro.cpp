@@ -123,7 +123,7 @@ bool ModuleSceneIntro::Start()
 	BumperSensor->listener = this;
 
 	//Spring sensor
-	springSensor = App->physics->CreateRectangleSensor(310, 120, 6, 50);
+	springSensor = App->physics->CreateRectangleSensor(305, 120, 6, 50);
 	springSensor->listener = this;
 
 	//Static Circles at the top
