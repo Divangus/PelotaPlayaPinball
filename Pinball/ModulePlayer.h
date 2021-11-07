@@ -29,5 +29,7 @@ public:
 	bool closeDoor;
 	bool telepR = false;
 	bool telepL = false;
+	bool muell ;
+
 
 };

@@ -26,7 +26,7 @@ bool ModulePlayer::Start()
 	ball= App->physics->CreateCircle(385, 477, 9.5);
 	ball->listener = this;
 	
-
+	muell = true;
 	death = false;
 	return true;
 }
@@ -49,7 +49,10 @@ update_status ModulePlayer::Update()
 	if (death == true)
 	{
 		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(385), PIXEL_TO_METERS(477)), 0);
+		/*muell = true;*/
+		muell = true;
 		death = false;
+		App->physics->world->DestroyBody(Door->body);
 	}
 	int x, y;
 	ball->GetPosition(x, y);
@@ -70,11 +73,13 @@ update_status ModulePlayer::Update()
 		ball->body->ApplyAngularImpulse(32, true);
 		stuck = false;
 	}
-	if (closeDoor == true)
+	if (closeDoor == true )
 	{
 		Door = App->physics->CreateRectangle(319, 122, 6, 50);
 		Door->body->SetType(b2_staticBody);
+		LOG("AFDASFSDFD");
 		closeDoor = false;
+		muell = false;
 	}
 	
 

@@ -512,15 +512,17 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->audio->PlayFx(dieFx);
 		App->player->death = true;
+		/*App->player->muell = true;*/
 	}
 
 	if (physA == App->scene_intro->BumperSensor)
 	{
 		App->player->stuck = true;
 	}
-	if (physA == App->scene_intro->springSensor)
+	if (physA == App->scene_intro->springSensor && App->player->muell==true)
 	{
 		App->audio->PlayFx(dieFx);
+		
 		App->player->closeDoor = true;
 	}
 
