@@ -498,6 +498,10 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->audio->PlayFx(bonus_fx);
 	}
+	if (physA == App->scene_intro->Death)
+	{
+		App->audio->PlayFx(bonus_fx);
+	}
 
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);

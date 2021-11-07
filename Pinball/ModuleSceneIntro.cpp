@@ -99,12 +99,12 @@ bool ModuleSceneIntro::Start()
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
 	//Sensor de muerte
-	Sensores Muerte;
-	Muerte.Sensor = App->physics->CreateRectangleSensor(185, 837, 120, 15);
-	Muerte.Sensor->listener = this;
+	
+	Death = App->physics->CreateRectangleSensor(185, 837, 120, 15);
+	Death->listener = this;
 
 	//Bonus rojo en la izquierda
-	Sensores Bonus[3];
+	
 	Bon1= App->physics->CreateRectangleSensor(58, 415, 9, 15);
 	Bon2 = App->physics->CreateRectangleSensor(49, 430, 9, 15);
 	Bon3 = App->physics->CreateRectangleSensor(41, 445, 9, 15);
