@@ -66,4 +66,5 @@ private:
 	b2Body* mouseBody;
 	b2Vec2 p;
 
+	uint bonus_fx;
 };

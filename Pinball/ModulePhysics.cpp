@@ -5,6 +5,7 @@
 #include "ModulePhysics.h"
 #include "ModuleSceneIntro.h"
 #include "p2Point.h"
+#include "ModuleAudio.h"
 #include "math.h"
 
 #ifdef _DEBUG
@@ -53,6 +54,8 @@ bool ModulePhysics::Start()
 	//b2FixtureDef fixture;
 	//fixture.shape = &shape;
 	/*big_ball->CreateFixture(&fixture);*/
+
+	bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");
 
 	return true;
 }
@@ -490,6 +493,15 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 {
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if (physA == App->scene_intro->Bon1|| physA == App->scene_intro->Bon2|| physA == App->scene_intro->Bon3)
+	{
+		App->audio->PlayFx(bonus_fx);
+	}
+	if (physA == App->scene_intro->Death)
+	{
+		App->audio->PlayFx(bonus_fx);
+	}
 
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
