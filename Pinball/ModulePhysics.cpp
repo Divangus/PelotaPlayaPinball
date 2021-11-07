@@ -40,6 +40,8 @@ bool ModulePhysics::Start()
 	//music and fx
 	bonus_fx = App->audio->LoadFx("pinball/Audio/Fx/CoinsFx.wav");
 	dieFx = App->audio->LoadFx("pinball/Audio/Fx/BonkFx.wav");
+	bumpFx = App->audio->LoadFx("pinball/Audio/Fx/PunchFx.wav");
+	trianFx = App->audio->LoadFx("pinball/Audio/Fx/PowFx.wav");
 
 
 	return true;
@@ -481,6 +483,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if (physA == App->scene_intro->BumperSensors1|| physA == App->scene_intro->BumperSensors2 || physA == App->scene_intro->BumperSensors3 || physA == App->scene_intro->BumperSensors4) {
 		App->scene_intro->score += 200;
+		App->audio->PlayFx(bumpFx);
 	}
 
 	if (physA == App->scene_intro->TeleportR) {
@@ -528,14 +531,16 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if (physA == App->scene_intro->triangleL) {
 		App->scene_intro->score += 200;
+		App->audio->PlayFx(trianFx);
 	}
 	if (physA == App->scene_intro->triangleR) {
 		App->scene_intro->score += 200;
+		App->audio->PlayFx(trianFx);
 	}
 
 	if (physA == App->scene_intro->springSensor && App->player->muell==true)
 	{
-		App->audio->PlayFx(dieFx);
+		//App->audio->PlayFx(dieFx);
 		
 		App->player->closeDoor = true;
 	}
