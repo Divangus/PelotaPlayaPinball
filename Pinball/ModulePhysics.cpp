@@ -55,7 +55,8 @@ bool ModulePhysics::Start()
 	//fixture.shape = &shape;
 	/*big_ball->CreateFixture(&fixture);*/
 
-	bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");
+	bonus_fx = App->audio->LoadFx("pinball/Audio/Fx/CoinsFx.wav");
+	dieFx = App->audio->LoadFx("pinball/Audio/Fx/BonkFx.wav");
 
 	return true;
 }
@@ -509,7 +510,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	}
 	if (physA == App->scene_intro->Death)
 	{
-		App->audio->PlayFx(bonus_fx);
+		App->audio->PlayFx(dieFx);
 		App->player->death = true;
 	}
 

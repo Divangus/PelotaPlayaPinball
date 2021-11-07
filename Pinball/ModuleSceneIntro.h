@@ -44,6 +44,8 @@ public:
 	PhysBody* left;	
 	PhysBody* left_circle;
 
+
+	//Sensores
 	PhysBody* Bon1;
 	PhysBody* Bon2;
 	PhysBody* Bon3;
@@ -51,14 +53,16 @@ public:
 	PhysBody* TeleportR;
 	PhysBody* TeleportL;
 	bool sensed;
+	SDL_Texture* Bonus;
 
 	//Muelle/Spring
 	PhysBody* muellesito;
 	PhysBody* StaticMuelle;
+	SDL_Texture* springTex;
 
-	//Sensores
-	p2List<Sensores*> TiposSensores;
-	SDL_Texture* Bonus;
+	//Static Circles at the Top
+	PhysBody* Static1;
+	PhysBody* Static2;
 
 	//Rectangulo negro del Score
 	SDL_Texture* BlackRectangle;
@@ -70,7 +74,6 @@ public:
 	SDL_Texture* rick;
 	SDL_Texture* background;
 	SDL_Texture* elephant;
-	/*uint bonus_fx;*/
 	uint music;
 	p2Point<int> ray;
 	bool ray_on=true;

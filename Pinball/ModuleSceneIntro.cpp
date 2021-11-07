@@ -29,6 +29,7 @@ bool ModuleSceneIntro::Start()
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
+	//Textures
 	box = App->textures->Load("pinball/crate.png");
 	flipperR = App->textures->Load("pinball/flipperR.png");
 	flipperL = App->textures->Load("pinball/flipperL.png");
@@ -36,9 +37,10 @@ bool ModuleSceneIntro::Start()
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
 	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
-	/*bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");*/
-	music = App->audio->PlayMusic("pinball/Chocobo.ogg");
+	springTex = App->textures->Load("pinball/spring.png");
 
+	//music
+	music = App->audio->PlayMusic("pinball/Audio/Chocobo.ogg");
 
 	map();
 
@@ -104,12 +106,10 @@ bool ModuleSceneIntro::Start()
 	TeleportL->listener = this;
 
 	//Sensor de muerte
-	
 	Death = App->physics->CreateRectangleSensor(185, 837, 120, 15);
 	Death->listener = this;
 
-	//Bonus rojo en la izquierda
-	
+	//Sensor Bonus rojo en la izquierda
 	Bon1= App->physics->CreateRectangleSensor(58, 415, 9, 15);
 	Bon2 = App->physics->CreateRectangleSensor(49, 430, 9, 15);
 	Bon3 = App->physics->CreateRectangleSensor(41, 445, 9, 15);
@@ -117,6 +117,11 @@ bool ModuleSceneIntro::Start()
 	Bon1->listener = this;
 	Bon2->listener = this;
 	Bon3->listener = this;
+
+	//Static Circles at the top
+	Static1 = App->physics->CreateCircleStatic(186, 133, 24);
+	Static2 = App->physics->CreateCircleStatic(264, 132, 24);
+
 	return ret;
 }
 
@@ -279,6 +284,8 @@ update_status ModuleSceneIntro::Update()
 
 	//Black Rectangle
 	App->renderer->Blit(BlackRectangle, 19, 52, NULL, 1.0f);
+
+	App->renderer->Blit(springTex, 370, 635, NULL,1.0f);
 
 	App->renderer->Blit(flipperR, 190, 700, NULL, 1.0f, right->GetRotation());
 
