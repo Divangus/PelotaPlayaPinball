@@ -43,10 +43,11 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	/*p2List_item<PhysBody*>* c = circles.getFirst();*/
 
-	/*PhysBody* b=ball.;*/
-	
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) { //reinicia la posicion del jugador
+		death = true;
+		
+	}
 	if (death == true)
 	{
 		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(385), PIXEL_TO_METERS(477)), 0);
@@ -81,7 +82,6 @@ update_status ModulePlayer::Update()
 		Door = App->physics->CreateRectangle(319, 122, 6, 50);
 		
 		Door->body->SetType(b2_staticBody);
-		LOG("AFDASFSDFD");
 		closeDoor = false;
 		door = true;
 		muell = false;
@@ -92,7 +92,6 @@ update_status ModulePlayer::Update()
 
 	}
 	
-
 	App->renderer->Blit(bola, x, y, NULL, 1.0f, ball->GetRotation());
 	
 	return UPDATE_CONTINUE;
