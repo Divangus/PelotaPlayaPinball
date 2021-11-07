@@ -53,6 +53,7 @@ public:
 	PhysBody* TeleportR;
 	PhysBody* TeleportL;
 	PhysBody* BumperSensor;
+	PhysBody* springSensor;
 	bool sensed;
 	SDL_Texture* Bonus;
 

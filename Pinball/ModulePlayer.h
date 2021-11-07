@@ -21,8 +21,12 @@ public:
 	PhysBody* ball;
 	iPoint position;
 	SDL_Texture* bola;
+	PhysBody* Door;
+
+	//booleanos de sensores
 	bool death;
 	bool stuck;
+	bool closeDoor;
 	bool telepR = false;
 	bool telepL = false;
 

@@ -70,15 +70,14 @@ update_status ModulePlayer::Update()
 		ball->body->ApplyAngularImpulse(32, true);
 		stuck = false;
 	}
-	/*if (App->player->position.y < 300 && App->player->position.y > 287) {
-					App->player->position.x = 327;
-					App->player->position.y = 199;
-				}
-				if (App->player->position.y < 206 && App->player->position.y > 190) {
-					App->player->position.x = 48;
-					App->player->position.y = 293;
-				}*/
-	/*c->data->GetPosition(x, y);*/
+	if (closeDoor == true)
+	{
+		Door = App->physics->CreateRectangle(319, 122, 6, 50);
+		Door->body->SetType(b2_staticBody);
+		closeDoor = false;
+	}
+	
+
 	App->renderer->Blit(bola, x, y, NULL, 1.0f, ball->GetRotation());
 	
 	return UPDATE_CONTINUE;
