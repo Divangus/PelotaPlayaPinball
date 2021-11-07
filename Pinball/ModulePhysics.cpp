@@ -479,6 +479,9 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
 
+	if (physA == App->scene_intro->BumperSensors1|| physA == App->scene_intro->BumperSensors2 || physA == App->scene_intro->BumperSensors3 || physA == App->scene_intro->BumperSensors4) {
+		App->scene_intro->score += 200;
+	}
 	if (physA == App->scene_intro->TeleportR) {
 
 		App->player->telepR = true;
@@ -517,7 +520,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		/*App->player->muell = true;*/
 	}
 
-	if (physA == App->scene_intro->BumperSensor)
+	if (physA == App->scene_intro->LilBumperSensor)
 	{
 		App->player->stuck = true;
 	}

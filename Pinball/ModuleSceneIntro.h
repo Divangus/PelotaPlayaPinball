@@ -52,7 +52,11 @@ public:
 	PhysBody* Death;
 	PhysBody* TeleportR;
 	PhysBody* TeleportL;
-	PhysBody* BumperSensor;
+	PhysBody* LilBumperSensor;
+	PhysBody* BumperSensors1;
+	PhysBody* BumperSensors2;
+	PhysBody* BumperSensors3;
+	PhysBody* BumperSensors4;
 	PhysBody* springSensor;
 	bool sensed;
 	SDL_Texture* BonusTex1;
@@ -76,7 +80,6 @@ public:
 	PhysBody* Static2;
 
 	//Swirl
-	PhysBody* swirlCircle;
 	SDL_Texture* swirlTex;
 
 	//Rectangulo negro del Score

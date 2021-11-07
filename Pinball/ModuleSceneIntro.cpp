@@ -123,9 +123,16 @@ bool ModuleSceneIntro::Start()
 	Bon2->listener = this;
 	Bon3->listener = this;
 
+	//Sensor Bumper (for score)
+	/*BumperSensors = App->physics->CreateCircleStatic(109, 126, 24);
+	BumperSensors = App->physics->CreateCircleStatic(148, 245, 24);
+	BumperSensors = App->physics->CreateCircleStatic(231, 394, 24);
+	BumperSensors = App->physics->CreateCircleStatic(287, 279, 24);*/
+	
+
 	//Sensor Bumper (in case ball gets stuck in the left bumper)
-	BumperSensor=App->physics->CreateRectangleSensor(132, 220, 5, 5);
-	BumperSensor->listener = this;
+	LilBumperSensor=App->physics->CreateRectangleSensor(132, 220, 5, 5);
+	LilBumperSensor->listener = this;
 
 	//Spring sensor
 	springSensor = App->physics->CreateRectangleSensor(305, 120, 6, 50);
@@ -135,9 +142,6 @@ bool ModuleSceneIntro::Start()
 	Static1 = App->physics->CreateCircleStatic(186, 133, 24);
 	Static2 = App->physics->CreateCircleStatic(264, 132, 24);
 
-	//Swirl
-	swirlCircle = App->physics->CreateCircle(63, 327, 5);
-	swirlCircle->body->SetType(b2_kinematicBody);
 
 	return ret;
 }
@@ -179,10 +183,9 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	//Anim Swirl
-	int sx, sy;
-	swirlCircle->GetPosition(sx, sy);
-	swirlCircle->body->ApplyAngularImpulse(20, true);
-	App->renderer->Blit(swirlTex, sx, sy);
+
+	App->renderer->Blit(swirlTex, 325, 200, NULL, 1.0f);
+	App->renderer->Blit(swirlTex, 52, 315, NULL, 1.0f);
 
 
 
@@ -260,11 +263,6 @@ update_status ModuleSceneIntro::Update()
 		}
 		c = c->next;
 	}
-
-	
-
-	
-
 
 	// ray -----------------
 	if(ray_on == true)
@@ -420,10 +418,14 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 	};
 	walls.add(App->physics->CreateChain(0, 0, wallLup, 12));
 
-	bumper.add(App->physics->CreateBumper(109, 126, 24));
-	bumper.add(App->physics->CreateBumper(148, 245, 24));
-	bumper.add(App->physics->CreateBumper(231, 394, 24));
-	bumper.add(App->physics->CreateBumper(287, 279, 24));
+	BumperSensors1 = App->physics->CreateBumper(109, 126, 24);
+	BumperSensors2 = App->physics->CreateBumper(148, 245, 24);
+	BumperSensors3 = App->physics->CreateBumper(231, 394, 24);
+	BumperSensors4 = App->physics->CreateBumper(287, 279, 24);
+	BumperSensors1->listener = this;
+	BumperSensors2->listener = this;
+	BumperSensors3->listener = this;
+	BumperSensors4->listener = this;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
