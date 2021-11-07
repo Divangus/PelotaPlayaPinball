@@ -28,6 +28,7 @@ bool ModulePlayer::Start()
 	
 	muell = true;
 	death = false;
+	door = false;
 	return true;
 }
 
@@ -49,8 +50,10 @@ update_status ModulePlayer::Update()
 	if (death == true)
 	{
 		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(385), PIXEL_TO_METERS(477)), 0);
+
 		/*muell = true;*/
 		muell = true;
+		door = false;
 		death = false;
 		App->physics->world->DestroyBody(Door->body);
 	}
@@ -76,10 +79,17 @@ update_status ModulePlayer::Update()
 	if (closeDoor == true )
 	{
 		Door = App->physics->CreateRectangle(319, 122, 6, 50);
+		
 		Door->body->SetType(b2_staticBody);
 		LOG("AFDASFSDFD");
 		closeDoor = false;
+		door = true;
 		muell = false;
+	}
+	if (door==true)
+	{
+		App->renderer->DrawQuad({ 316,95,6,50 }, 0, 150, 150);
+
 	}
 	
 
