@@ -19,8 +19,8 @@ Keyboard
 
 Keyboard
 - F1 - View collisions
-- F2 - God Mode (Move the ball with the mouse and can't fall)
-- F3 - Infinite balls
+- F3 - Instant dead
+- C - Add 100 points
 
 ### Combos
 - After hitting the bonus player gain extra points (Three red rectangles)
