@@ -51,8 +51,8 @@ bool ModuleSceneIntro::Start()
 
 	//flippers
 	//right flippers
-	right = App->physics->CreateRectangle(238, 703, 36, 12);
-	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
+	right = App->physics->CreateRectangle(233, 706, 36, 12);
+	right_circle = App->physics->CreateCircleStatic(233, 706, 6);
 
 	b2RevoluteJointDef rightRevJoint;
 	rightRevJoint.bodyA = right->body;
@@ -67,8 +67,8 @@ bool ModuleSceneIntro::Start()
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
 	
 	//left flippers
-	left = App->physics->CreateRectangle(138, 703, 36, 12);
-	left_circle = App->physics->CreateCircleStatic(138, 703, 6);
+	left = App->physics->CreateRectangle(143, 706, 36, 12);
+	left_circle = App->physics->CreateCircleStatic(143, 706, 6);
 
 	b2RevoluteJointDef leftRevJoint;
 	leftRevJoint.bodyA = left->body;
