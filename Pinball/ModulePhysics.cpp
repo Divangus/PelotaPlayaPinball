@@ -482,6 +482,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	if (physA == App->scene_intro->BumperSensors1|| physA == App->scene_intro->BumperSensors2 || physA == App->scene_intro->BumperSensors3 || physA == App->scene_intro->BumperSensors4) {
 		App->scene_intro->score += 200;
 	}
+
 	if (physA == App->scene_intro->TeleportR) {
 
 		App->player->telepR = true;
@@ -524,6 +525,14 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->player->stuck = true;
 	}
+
+	if (physA == App->scene_intro->triangleL) {
+		App->scene_intro->score += 200;
+	}
+	if (physA == App->scene_intro->triangleR) {
+		App->scene_intro->score += 200;
+	}
+
 	if (physA == App->scene_intro->springSensor && App->player->muell==true)
 	{
 		App->audio->PlayFx(dieFx);

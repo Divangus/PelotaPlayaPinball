@@ -34,7 +34,8 @@ public:
 	p2List<PhysBody*> boxes;
 	p2List<PhysBody*> ricks;
 	p2List<PhysBody*> TheMap;
-	p2List<PhysBody*> walls;
+	PhysBody* walls;
+	
 	p2List<PhysBody*> wal1;
 	p2List<PhysBody*> bumper;
 	
@@ -44,7 +45,8 @@ public:
 	PhysBody* left;	
 	PhysBody* left_circle;
 
-
+	PhysBody* triangleL;
+	PhysBody* triangleR;
 	//Sensores
 	PhysBody* Bon1;
 	PhysBody* Bon2;

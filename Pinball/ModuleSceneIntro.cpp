@@ -182,8 +182,9 @@ update_status ModuleSceneIntro::Update()
 		Bonus3 = false;
 	}
 
-	//Anim Swirl
 
+
+	//Anim Swirl
 	App->renderer->Blit(swirlTex, 325, 200, NULL, 1.0f);
 	App->renderer->Blit(swirlTex, 52, 315, NULL, 1.0f);
 
@@ -372,7 +373,7 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 		314, 521,
 		314, 633
 	};
-	walls.add(App->physics->CreateChain(0, 0, wallRdw, 12));
+	walls = App->physics->CreateChain(0, 0, wallRdw, 12);
 
 	int wallRup[12] = {
 		249, 631,
@@ -382,21 +383,23 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 		294, 603,
 		253, 637
 	};
-	walls.add(App->physics->CreateChain(0, 0, wallRup, 12));
+	walls = App->physics->CreateChain(0, 0, wallRup, 12);
 
 	int trinR[6] = {
 		233, 581,
 		261, 530,
 		263, 565
 	};
-	walls.add(App->physics->CreateReboundChain(0, 0, trinR, 6));
+	triangleR = App->physics->CreateReboundChain(0, 0, trinR, 6);
+	triangleR->listener = this;
 
 	int trinL[6] = {
 		155, 576,
 		126, 524,
 		124, 559
 	};
-	walls.add(App->physics->CreateReboundChain(0, 0, trinL, 6));
+	triangleL = App->physics->CreateReboundChain(0, 0, trinL, 6);
+	triangleL->listener = this;
 
 	int wallLdw[12] = {
 		144, 702,
@@ -406,7 +409,7 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 		56, 640,
 		135, 711
 	};
-	walls.add(App->physics->CreateChain(0, 0, wallLdw, 12));
+	walls =App->physics->CreateChain(0, 0, wallLdw, 12);
 
 	int wallLup[12] = {
 		134, 621,
@@ -416,7 +419,7 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 		90, 592,
 		129, 626
 	};
-	walls.add(App->physics->CreateChain(0, 0, wallLup, 12));
+	walls = App->physics->CreateChain(0, 0, wallLup, 12);
 
 	BumperSensors1 = App->physics->CreateBumper(109, 126, 24);
 	BumperSensors2 = App->physics->CreateBumper(148, 245, 24);
