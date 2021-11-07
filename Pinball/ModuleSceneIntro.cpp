@@ -36,8 +36,10 @@ bool ModuleSceneIntro::Start()
 	rick = App->textures->Load("pinball/rick_head.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
 	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
-	bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");
+	/*bonus_fx = App->audio->LoadFx("pinball/Bonk.wav");*/
 	music = App->audio->PlayMusic("pinball/Chocobo.ogg");
+
+
 
 	map();
 
@@ -103,13 +105,13 @@ bool ModuleSceneIntro::Start()
 
 	//Bonus rojo en la izquierda
 	Sensores Bonus[3];
-	Bonus[0].Sensor = App->physics->CreateRectangleSensor(58, 415, 9, 15);
-	Bonus[1].Sensor = App->physics->CreateRectangleSensor(49, 430, 9, 15);
-	Bonus[2].Sensor = App->physics->CreateRectangleSensor(41, 445, 9, 15);
+	Bon1= App->physics->CreateRectangleSensor(58, 415, 9, 15);
+	Bon2 = App->physics->CreateRectangleSensor(49, 430, 9, 15);
+	Bon3 = App->physics->CreateRectangleSensor(41, 445, 9, 15);
 
-	Bonus[0].Sensor->listener = this;
-	Bonus[1].Sensor->listener = this;
-	Bonus[2].Sensor->listener = this;
+	Bon1->listener = this;
+	Bon2->listener = this;
+	Bon3->listener = this;
 	return ret;
 }
 
@@ -422,7 +424,7 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	while (Sensores != NULL) {
 		if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
 			if (Sensores->data->tipo == Sensores::COINS) {
-				App->audio->PlayFx(bonus_fx);
+				/*App->audio->PlayFx(bonus_fx);*/
 			}
 			if (Sensores->data->tipo == Sensores::DEAD) {
 				if (App->player->position.y < 837) {

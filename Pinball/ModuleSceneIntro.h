@@ -43,7 +43,12 @@ public:
 	PhysBody* right_circle;
 	PhysBody* left;	
 	PhysBody* left_circle;
-	
+
+	PhysBody* Bon1;
+	PhysBody* Bon2;
+	PhysBody* Bon3;
+	PhysBody* Death;
+
 	bool sensed;
 
 	//Muelle/Spring
@@ -64,7 +69,7 @@ public:
 	SDL_Texture* rick;
 	SDL_Texture* background;
 	SDL_Texture* elephant;
-	uint bonus_fx;
+	/*uint bonus_fx;*/
 	uint music;
 	p2Point<int> ray;
 	bool ray_on=true;
