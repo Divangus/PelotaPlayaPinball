@@ -206,6 +206,7 @@ update_status ModuleSceneIntro::Update()
 
 		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 	}
+
 	//background
 	App->renderer->Blit(background, 0, 0, NULL, 1.0f);
 	// Prepare for raycast ------------------------------------------------------
@@ -377,14 +378,14 @@ elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
 		261, 530,
 		263, 565
 	};
-	walls.add(App->physics->CreateChain(0, 0, trinR, 6));
+	walls.add(App->physics->CreateReboundChain(0, 0, trinR, 6));
 
 	int trinL[6] = {
 		155, 576,
 		126, 524,
 		124, 559
 	};
-	walls.add(App->physics->CreateChain(0, 0, trinL, 6));
+	walls.add(App->physics->CreateReboundChain(0, 0, trinL, 6));
 
 	int wallLdw[12] = {
 		144, 702,
@@ -405,6 +406,11 @@ elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
 		129, 626
 	};
 	walls.add(App->physics->CreateChain(0, 0, wallLup, 12));
+
+	bumper.add(App->physics->CreateBumper(108, 126, 25));
+	bumper.add(App->physics->CreateBumper(147, 243, 25));
+	bumper.add(App->physics->CreateBumper(231, 392, 25));
+	bumper.add(App->physics->CreateBumper(287, 278, 25));
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)

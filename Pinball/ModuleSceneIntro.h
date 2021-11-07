@@ -36,13 +36,13 @@ public:
 	p2List<PhysBody*> elephs;
 	p2List<PhysBody*> walls;
 	p2List<PhysBody*> wal1;
+	p2List<PhysBody*> bumper;
 	
 	PhysBody* sensor;
 	PhysBody* right;
 	PhysBody* right_circle;
 	PhysBody* left;	
 	PhysBody* left_circle;
-	PhysBody* bumper;
 	
 	bool sensed;
 
