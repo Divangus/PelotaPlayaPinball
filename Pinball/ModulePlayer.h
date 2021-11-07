@@ -18,10 +18,11 @@ public:
 
 public:
 	p2List<PhysBody*> circles;
-
+	PhysBody* ball;
 	iPoint position;
 	SDL_Texture* bola;
-
-
+	bool death;
+	int px;
+	int py;
 	
 };

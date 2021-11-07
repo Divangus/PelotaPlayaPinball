@@ -20,10 +20,16 @@ bool ModulePlayer::Start()
 	//Textures
 	bola = App->textures->Load("pinball/bola.png");
 	//Rectangles and Circle
-	circles.add(App->physics->CreateCircle(385, 477, 9.5));
-	circles.getLast()->data->listener = this;
+	px = 385;
+	py = 477;
+	/*circles.add(App->physics->CreateCircle(px, py, 9.5));
+	circles*/
 
+	ball= App->physics->CreateCircle(px, py, 9.5);
+	ball->listener = this;
 	
+
+	death = false;
 	return true;
 }
 
@@ -38,10 +44,21 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	p2List_item<PhysBody*>* c = circles.getFirst();
+	/*p2List_item<PhysBody*>* c = circles.getFirst();*/
+
+	/*PhysBody* b=ball.;*/
+	
+	if (death == true)
+	{
+		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(385), PIXEL_TO_METERS(477)), 0);
+		death = false;
+	}
 	int x, y;
-	c->data->GetPosition(x, y);
-	App->renderer->Blit(bola, x, y, NULL, 1.0f, c->data->GetRotation());
+	ball->GetPosition(x, y);
+	
+
+	/*c->data->GetPosition(x, y);*/
+	App->renderer->Blit(bola, x, y, NULL, 1.0f, ball->GetRotation());
 	
 	return UPDATE_CONTINUE;
 }

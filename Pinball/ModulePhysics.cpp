@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "ModuleAudio.h"
 #include "math.h"
-
+#include "ModulePlayer.h"
 #ifdef _DEBUG
 #pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
 #else
@@ -99,7 +99,7 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 	pbody->body = b;
 	b->SetUserData(pbody);
 	pbody->width = pbody->height = radius;
-
+	
 	return pbody;
 }
 
@@ -493,6 +493,10 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 {
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+	/*p2List_item<PhysBody*>* c = App->player->circles.getFirst();
+	int x, y;
+	c->data->GetPosition(x, y);*/
+
 
 	if (physA == App->scene_intro->Bon1|| physA == App->scene_intro->Bon2|| physA == App->scene_intro->Bon3)
 	{
@@ -500,7 +504,18 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	}
 	if (physA == App->scene_intro->Death)
 	{
+		
+		
+		
+	/*	while (c!=NULL) {
+			App->physics->world->DestroyBody(c->data->body);
+			c = c->next;
+
+		}*/
+		/*App->player->circles.add(App->physics->CreateCircle(385, 477, 9.5));
+		App->player->circles.getLast()->data->listener = this;*/
 		App->audio->PlayFx(bonus_fx);
+		App->player->death = true;
 	}
 
 	if(physA && physA->listener != NULL)
