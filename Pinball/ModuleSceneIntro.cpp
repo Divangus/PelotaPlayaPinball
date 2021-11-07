@@ -308,7 +308,7 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::map()
 {
 	
-int elephant[106] = {
+int mapchain[106] = {
 		401, 753,
 		401, 227,
 		368, 149,
@@ -323,8 +323,8 @@ int elephant[106] = {
 		118, 157,
 		130, 152,
 		133, 158,
-		111, 190,
-		120, 254,
+		117, 197,
+		130, 215,
 		105, 279,
 		97, 328,
 		87, 344,
@@ -364,7 +364,7 @@ int elephant[106] = {
 		369, 753
 };
 
-elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
+TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 
 
 	int wallRdw[12] = {
