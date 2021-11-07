@@ -56,12 +56,12 @@ update_status ModulePlayer::Update()
 	
 	if (telepR == true) {
 
-		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(48), PIXEL_TO_METERS(296)), 0);
+		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(62), PIXEL_TO_METERS(370)), 0);
 		telepR = false;
 	}
 	if (telepL == true) {
 
-		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(327), PIXEL_TO_METERS(205)), 0);
+		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(335), PIXEL_TO_METERS(238)), 0);
 		telepL = false;
 	}
 	/*if (App->player->position.y < 300 && App->player->position.y > 287) {
