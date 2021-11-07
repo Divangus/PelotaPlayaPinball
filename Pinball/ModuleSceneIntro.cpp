@@ -40,6 +40,7 @@ bool ModuleSceneIntro::Start()
 	music = App->audio->PlayMusic("pinball/Chocobo.ogg");
 
 
+
 	map();
 
 	//Score
@@ -100,7 +101,7 @@ bool ModuleSceneIntro::Start()
 	//Sensor Teleport
 	TeleportR = App->physics->CreateRectangleSensor(335, 200, 15, 9);
 	TeleportR->listener = this;
-	TeleportL = App->physics->CreateRectangleSensor(62, 320, 27, 9);
+	TeleportL = App->physics->CreateRectangleSensor(56, 297, 27, 9);
 	TeleportL->listener = this;
 
 	//Sensor de muerte
@@ -278,14 +279,14 @@ update_status ModuleSceneIntro::Update()
 	}
 
 	//Black Rectangle
-	App->renderer->Blit(BlackRectangle, 19, 52, NULL, 1.0f);
+	App->renderer->Blit(BlackRectangle, 49, 52, NULL, 1.0f);
 
 	App->renderer->Blit(flipperR, 190, 700, NULL, 1.0f, right->GetRotation());
 
 	App->renderer->Blit(flipperL, 93, 700, NULL, 1.0f, left->GetRotation());
 
 	sprintf_s(scoreText, 10, "%8d", score);
-	App->fonts->BlitText(20, 50, scoreFont, scoreText);
+	App->fonts->BlitText(50, 50, scoreFont, scoreText);
 
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 	{
@@ -301,7 +302,7 @@ update_status ModuleSceneIntro::Update()
 void ModuleSceneIntro::map()
 {
 	
-int elephant[106] = {
+int map[106] = {
 		401, 753,
 		401, 227,
 		368, 149,
@@ -316,8 +317,8 @@ int elephant[106] = {
 		118, 157,
 		130, 152,
 		133, 158,
-		111, 190,
-		120, 254,
+		117, 197,
+		130, 215,
 		105, 279,
 		97, 328,
 		87, 344,
@@ -357,7 +358,7 @@ int elephant[106] = {
 		369, 753
 };
 
-elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
+maps.add(App->physics->CreateChain(0, 0, map, 106));
 
 
 	int wallRdw[12] = {
@@ -414,31 +415,35 @@ elephs.add(App->physics->CreateChain(0, 0, elephant, 106));
 	};
 	walls.add(App->physics->CreateChain(0, 0, wallLup, 12));
 
-	bumper.add(App->physics->CreateBumper(109, 126, 24));
-	bumper.add(App->physics->CreateBumper(148, 245, 24));
-	bumper.add(App->physics->CreateBumper(231, 394, 24));
-	bumper.add(App->physics->CreateBumper(287, 279, 24));
+	bumper.add(App->physics->CreateBumper(108, 126, 25));
+	bumper.add(App->physics->CreateBumper(147, 243, 25));
+	bumper.add(App->physics->CreateBumper(231, 392, 25));
+	bumper.add(App->physics->CreateBumper(287, 278, 25));
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
-	//int x, y;
+	int x, y;
 
-	//p2List_item<Sensores*>* Sensores = TiposSensores.getFirst();
+	p2List_item<Sensores*>* Sensores = TiposSensores.getFirst();
 
-	//while (Sensores != NULL) {
-	//	if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
-	//		if (Sensores->data->tipo == Sensores::COINS) {
-	//			/*App->audio->PlayFx(bonus_fx);*/
-	//		}
-	//		if (Sensores->data->tipo == Sensores::DEAD) {
-	//			if (App->player->position.y < 837) {
-	//			}
-	//		}
-	//		if (Sensores->data->tipo == Sensores::TUNEL) {
-	//			
-	//		}
-	//	}
-	//}
+	while (Sensores != NULL) {
+		if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
+			if (Sensores->data->tipo == Sensores::COINS) {
+				/*App->audio->PlayFx(bonus_fx);*/
+			}
+			if (Sensores->data->tipo == Sensores::DEAD) {
+				if (App->player->position.y < 837) {
+					/*if (vida > 0) {
+						App->player->position.x = 385;
+						App->player->position.y = 477;
+					}*/
+				}
+			}
+			if (Sensores->data->tipo == Sensores::TUNEL) {
+				
+			}
+		}
+	}
 	
 }

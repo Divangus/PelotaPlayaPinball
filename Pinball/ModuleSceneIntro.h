@@ -33,7 +33,7 @@ public:
 	p2List<PhysBody*> circles;
 	p2List<PhysBody*> boxes;
 	p2List<PhysBody*> ricks;
-	p2List<PhysBody*> elephs;
+	p2List<PhysBody*> maps;
 	p2List<PhysBody*> walls;
 	p2List<PhysBody*> wal1;
 	p2List<PhysBody*> bumper;
