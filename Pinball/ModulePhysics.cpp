@@ -516,9 +516,14 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if (physA == App->scene_intro->BumperSensor)
 	{
-		App->audio->PlayFx(dieFx);
 		App->player->stuck = true;
 	}
+	if (physA == App->scene_intro->springSensor)
+	{
+		App->audio->PlayFx(dieFx);
+		App->player->closeDoor = true;
+	}
+
 
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
