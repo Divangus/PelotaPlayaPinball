@@ -22,7 +22,5 @@ public:
 	iPoint position;
 	SDL_Texture* bola;
 	bool death;
-	int px;
-	int py;
-	
+
 };

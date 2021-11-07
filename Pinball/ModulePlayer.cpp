@@ -20,8 +20,6 @@ bool ModulePlayer::Start()
 	//Textures
 	bola = App->textures->Load("pinball/bola.png");
 	//Rectangles and Circle
-	px = 385;
-	py = 477;
 	/*circles.add(App->physics->CreateCircle(px, py, 9.5));
 	circles*/
 
