@@ -18,7 +18,7 @@ ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app,
 {
 	world = NULL;
 	mouse_joint = NULL;
-	debug = true;
+	debug = false;
 }
 
 // Destructor
@@ -521,8 +521,6 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->audio->PlayFx(dieFx);
 		App->player->death = true;
-		
-		/*App->player->muell = true;*/
 	}
 
 	if (physA == App->scene_intro->LilBumperSensor)
@@ -541,8 +539,6 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if (physA == App->scene_intro->springSensor && App->player->muell==true)
 	{
-		//App->audio->PlayFx(dieFx);
-		
 		App->player->closeDoor = true;
 	}
 

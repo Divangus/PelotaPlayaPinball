@@ -54,6 +54,9 @@ bool ModuleSceneIntro::Start()
 	scoreFont = App->fonts->Load("pinball/fonts/font1.png", lookupTable, 2);
 
 
+	//lives
+	Heart = App->textures->Load("pinball/Heart.png");
+
 	//flippers
 	//right flippers
 	right = App->physics->CreateRectangle(235, 706, 32, 12);
@@ -280,30 +283,54 @@ update_status ModuleSceneIntro::Update()
 	sprintf_s(scoreText, 10, "%8d", score);
 	App->fonts->BlitText(20, 50, scoreFont, scoreText);
 
+
+	App->renderer->DrawQuad({ 340,50,40,20 }, 0, 0, 0);
+	sprintf_s(scoreText, 10, "%2d", lives);
+	App->fonts->BlitText(355, 50, scoreFont, scoreText);
+	App->renderer->Blit(Heart,340,53,NULL);
+
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
 	{
 		LOG("add 100 score");
 		score += 100;
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+	{
+		
+		lives = 0;
+	}
+
 	if (lives == 0)
 	{
-		GameOver = App->textures->Load("pinball/GameOver.png");
-		App->renderer->Blit(GameOver, 0,120,NULL);
-
 		if (Mute)
 		{	
+			App->player->door = false;
+			App->physics->world->DestroyBody(App->player->ball->body);
+			char lookupTable[] = { "0123456789 0123456789" };
+			scoreFont2 = App->fonts->Load("pinball/fonts/font2.png", lookupTable, 2);
+
+			GameOver = App->textures->Load("pinball/GameOver.png");
 			App->audio->PlayMusic("pinball/Audio/NoMusic.ogg");
 			App->audio->PlayFx(Sus);
 			Mute = false;		
 		}
+		App->renderer->Blit(GameOver, 0,120,NULL);
+
+		sprintf_s(scoreText, 10, "%8d", score);
+		App->fonts->BlitText(90, 330, scoreFont2, scoreText);
+
+
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
 			lives = 5;
 			score = 0;
 			MusicOn = true;
 			Mute = true;
-			App->textures->Unload(GameOver);
+			App->player->ball = App->physics->CreateCircle(385, 477, 9.5);
+			App->player->ball->listener = this;
+
+			//App->textures->Unload(GameOver);
 		}
 	}
 

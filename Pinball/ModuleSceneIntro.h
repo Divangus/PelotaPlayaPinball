@@ -94,6 +94,7 @@ public:
 	SDL_Texture* background;
 	SDL_Texture* elephant;
 	SDL_Texture* GameOver;
+	SDL_Texture* Heart;
 
 	uint music;
 	p2Point<int> ray;
@@ -105,5 +106,6 @@ public:
 	int score = 0000;
 	int Bbonus = 0;
 	int scoreFont = -1;
+	int scoreFont2 = -1;
 	char scoreText[10] = { "\0" };
 };
