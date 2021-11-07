@@ -369,7 +369,7 @@ update_status ModulePhysics::PostUpdate()
 					def.bodyA = ground;
 					def.bodyB = mouseBody;
 					def.target = mousePosition;
-					def.dampingRatio = 0.04f;
+					def.dampingRatio = 0.1f;
 					def.frequencyHz = 2.0f;
 					def.maxForce = 100.0f * mouseBody->GetMass();
 
