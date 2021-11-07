@@ -42,11 +42,11 @@ bool ModuleSceneIntro::Start()
 	BonusTex2 = App->textures->Load("pinball/Bonus.png");
 	BonusTex3 = App->textures->Load("pinball/Bonus.png");
 	BonusUsedTex = App->textures->Load("pinball/BonusUsed.png");
-
+	
 	//music and fx
-	music = App->audio->PlayMusic("pinball/Audio/Chocobo.ogg");
+	
 	headshotFx = App->audio->LoadFx("pinball/Audio/Fx/HeadshotFx.wav");
-
+	Sus = App->audio->LoadFx("pinball/Audio/Fx/Sus.wav");
 	map();
 
 	//Score
@@ -123,12 +123,6 @@ bool ModuleSceneIntro::Start()
 	Bon2->listener = this;
 	Bon3->listener = this;
 
-	//Sensor Bumper (for score)
-	/*BumperSensors = App->physics->CreateCircleStatic(109, 126, 24);
-	BumperSensors = App->physics->CreateCircleStatic(148, 245, 24);
-	BumperSensors = App->physics->CreateCircleStatic(231, 394, 24);
-	BumperSensors = App->physics->CreateCircleStatic(287, 279, 24);*/
-	
 
 	//Sensor Bumper (in case ball gets stuck in the left bumper)
 	LilBumperSensor=App->physics->CreateRectangleSensor(132, 220, 5, 5);
@@ -142,7 +136,8 @@ bool ModuleSceneIntro::Start()
 	Static1 = App->physics->CreateCircleStatic(186, 133, 24);
 	Static2 = App->physics->CreateCircleStatic(264, 132, 24);
 
-
+	Mute = true;
+	MusicOn = true;
 	return ret;
 }
 
@@ -157,6 +152,12 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+
+	if (MusicOn)
+	{
+		music = App->audio->PlayMusic("pinball/Audio/Chocobo.ogg");
+		MusicOn = false;
+	}
 	//Bonus
 	//Draw Bonus
 	App->renderer->Blit(BonusTex1, 58, 415, NULL, 1.0f);
@@ -191,17 +192,17 @@ update_status ModuleSceneIntro::Update()
 
 
 	//Muelle/Spring
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if ((App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)&& (lives!=0))
 	{
 		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	if ((App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) && (lives != 0))
 	{
 		right->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) && (lives != 0))
 	{
 		left->body->ApplyForceToCenter(b2Vec2(0, -300), 1);
 	}
@@ -212,19 +213,6 @@ update_status ModuleSceneIntro::Update()
 		ray.x = App->input->GetMouseX();
 		ray.y = App->input->GetMouseY();
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
-		circles.getLast()->data->listener = this;
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-	{
-		boxes.add(App->physics->CreateRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 100, 50));
-	}
-
-	
 
 	//background
 	App->renderer->Blit(background, 0, 0, NULL, 1.0f);
@@ -298,7 +286,26 @@ update_status ModuleSceneIntro::Update()
 		score += 100;
 	}
 
-	
+	if (lives == 0)
+	{
+		GameOver = App->textures->Load("pinball/GameOver.png");
+		App->renderer->Blit(GameOver, 0,120,NULL);
+
+		if (Mute)
+		{	
+			App->audio->PlayMusic("pinball/Audio/NoMusic.ogg");
+			App->audio->PlayFx(Sus);
+			Mute = false;		
+		}
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			lives = 5;
+			score = 0;
+			MusicOn = true;
+			Mute = true;
+			App->textures->Unload(GameOver);
+		}
+	}
 
 	return UPDATE_CONTINUE;
 }

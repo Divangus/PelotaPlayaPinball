@@ -5,7 +5,7 @@
 #include "ModulePhysics.h"
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
-
+#include "ModuleSceneIntro.h"
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -44,22 +44,16 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) { //reinicia la posicion del jugador
-		death = true;
-		
-	}
 	if (death == true)
 	{
 		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(385), PIXEL_TO_METERS(477)), 0);
 
-		/*muell = true;*/
 		muell = true;
 		door = false;
 		death = false;
+		App->scene_intro->lives -= 1;
 		App->physics->world->DestroyBody(Door->body);
 	}
-	int x, y;
-	ball->GetPosition(x, y);
 	
 	if (telepR == true) {
 
@@ -91,7 +85,9 @@ update_status ModulePlayer::Update()
 		App->renderer->DrawQuad({ 316,95,6,50 }, 0, 150, 150);
 
 	}
-	
+	int x, y;
+	ball->GetPosition(x, y);
+
 	App->renderer->Blit(bola, x, y, NULL, 1.0f, ball->GetRotation());
 	
 	return UPDATE_CONTINUE;

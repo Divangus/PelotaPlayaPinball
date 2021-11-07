@@ -521,6 +521,7 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	{
 		App->audio->PlayFx(dieFx);
 		App->player->death = true;
+		
 		/*App->player->muell = true;*/
 	}
 

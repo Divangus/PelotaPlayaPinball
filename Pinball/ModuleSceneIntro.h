@@ -76,7 +76,7 @@ public:
 	bool Bonus2;
 	bool Bonus3;
 	uint headshotFx;
-
+	uint Sus;
 	//Static Circles at the Top
 	PhysBody* Static1;
 	PhysBody* Static2;
@@ -93,10 +93,15 @@ public:
 	SDL_Texture* flipperL;
 	SDL_Texture* background;
 	SDL_Texture* elephant;
+	SDL_Texture* GameOver;
+
 	uint music;
 	p2Point<int> ray;
 	bool ray_on=true;
+	bool Mute;
+	bool MusicOn;
 
+	int lives = 5;
 	int score = 0000;
 	int Bbonus = 0;
 	int scoreFont = -1;
