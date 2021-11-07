@@ -37,6 +37,7 @@ bool ModuleSceneIntro::Start()
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
 	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
 	springTex = App->textures->Load("pinball/spring.png");
+	swirlTex = App->textures->Load("pinball/swirl.png");
 
 	//music
 	music = App->audio->PlayMusic("pinball/Audio/Chocobo.ogg");
@@ -129,6 +130,10 @@ bool ModuleSceneIntro::Start()
 	Static1 = App->physics->CreateCircleStatic(186, 133, 24);
 	Static2 = App->physics->CreateCircleStatic(264, 132, 24);
 
+	//Swirl
+	swirlCircle = App->physics->CreateCircle(63, 327, 5);
+	swirlCircle->body->SetType(b2_kinematicBody);
+
 	return ret;
 }
 
@@ -148,7 +153,10 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(Bonus, 49, 430, NULL, 1.0f);
 	App->renderer->Blit(Bonus, 41, 445, NULL, 1.0f);
 
-
+	int sx, sy;
+	swirlCircle->GetPosition(sx, sy);
+	swirlCircle->body->ApplyAngularImpulse(3, true);
+	App->renderer->Blit(swirlTex, sx, sy);
 
 	//Muelle/Spring
 	

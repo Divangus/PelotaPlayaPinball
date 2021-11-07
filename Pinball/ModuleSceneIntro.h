@@ -66,6 +66,9 @@ public:
 	PhysBody* Static1;
 	PhysBody* Static2;
 
+	//Swirl
+	PhysBody* swirlCircle;
+	SDL_Texture* swirlTex;
 	//Rectangulo negro del Score
 	SDL_Texture* BlackRectangle;
 
