@@ -52,6 +52,7 @@ public:
 	PhysBody* Death;
 	PhysBody* TeleportR;
 	PhysBody* TeleportL;
+	PhysBody* BumperSensor;
 	bool sensed;
 	SDL_Texture* Bonus;
 

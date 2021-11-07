@@ -118,6 +118,10 @@ bool ModuleSceneIntro::Start()
 	Bon2->listener = this;
 	Bon3->listener = this;
 
+	//Sensor Bumper (in case ball gets stuck in the left bumper)
+	BumperSensor=App->physics->CreateRectangleSensor(132, 220, 5, 5);
+	BumperSensor->listener = this;
+
 	//Static Circles at the top
 	Static1 = App->physics->CreateCircleStatic(186, 133, 24);
 	Static2 = App->physics->CreateCircleStatic(264, 132, 24);
