@@ -71,7 +71,6 @@ public:
 	SDL_Texture* box;
 	SDL_Texture* flipperR;
 	SDL_Texture* flipperL;
-	SDL_Texture* rick;
 	SDL_Texture* background;
 	SDL_Texture* elephant;
 	uint music;
