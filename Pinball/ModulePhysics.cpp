@@ -37,26 +37,10 @@ bool ModulePhysics::Start()
 	b2BodyDef bd;
 	ground = world->CreateBody(&bd);
 
-	// big static circle as "ground" in the middle of the screen
-	//int x = SCREEN_WIDTH / 2;
-	//int y = SCREEN_HEIGHT / 1.5f;
-	//int diameter = SCREEN_WIDTH / 2;
-
-	//b2BodyDef body;
-	//body.type = b2_staticBody;
-	//body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
-
-	///*b2Body* big_ball = world->CreateBody(&body);*/
-
-	//b2CircleShape shape;
-	//shape.m_radius = PIXEL_TO_METERS(diameter) * 0.5f;
-
-	//b2FixtureDef fixture;
-	//fixture.shape = &shape;
-	/*big_ball->CreateFixture(&fixture);*/
-
+	//music and fx
 	bonus_fx = App->audio->LoadFx("pinball/Audio/Fx/CoinsFx.wav");
 	dieFx = App->audio->LoadFx("pinball/Audio/Fx/BonkFx.wav");
+
 
 	return true;
 }
@@ -504,10 +488,28 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		App->player->telepL = true;
 	}
 
-	if (physA == App->scene_intro->Bon1|| physA == App->scene_intro->Bon2|| physA == App->scene_intro->Bon3)
+	if (physA == App->scene_intro->Bon1)
 	{
 		App->audio->PlayFx(bonus_fx);
+		App->scene_intro->score += 200;
+		App->scene_intro->Bonus1 = true;
 	}
+	if (physA == App->scene_intro->Bon2)
+	{
+		App->audio->PlayFx(bonus_fx);
+		App->scene_intro->score += 200;
+		App->scene_intro->Bonus2 = true;
+		
+		
+	}
+	if (physA == App->scene_intro->Bon3)
+	{
+		App->audio->PlayFx(bonus_fx);
+		App->scene_intro->score += 200;
+		App->scene_intro->Bonus3 = true;
+
+	}
+
 	if (physA == App->scene_intro->Death)
 	{
 		App->audio->PlayFx(dieFx);

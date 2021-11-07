@@ -67,5 +67,6 @@ private:
 	b2Vec2 p;
 
 	uint bonus_fx;
+	
 	uint dieFx;
 };

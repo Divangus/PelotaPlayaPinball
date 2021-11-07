@@ -55,12 +55,21 @@ public:
 	PhysBody* BumperSensor;
 	PhysBody* springSensor;
 	bool sensed;
-	SDL_Texture* Bonus;
+	SDL_Texture* BonusTex1;
+	SDL_Texture* BonusTex2;
+	SDL_Texture* BonusTex3;
+	SDL_Texture* BonusUsedTex;
 
 	//Muelle/Spring
 	PhysBody* muellesito;
 	PhysBody* StaticMuelle;
 	SDL_Texture* springTex;
+
+	//Bonus
+	bool Bonus1;
+	bool Bonus2;
+	bool Bonus3;
+	uint headshotFx;
 
 	//Static Circles at the Top
 	PhysBody* Static1;
@@ -69,6 +78,7 @@ public:
 	//Swirl
 	PhysBody* swirlCircle;
 	SDL_Texture* swirlTex;
+
 	//Rectangulo negro del Score
 	SDL_Texture* BlackRectangle;
 

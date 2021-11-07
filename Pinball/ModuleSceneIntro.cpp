@@ -33,14 +33,19 @@ bool ModuleSceneIntro::Start()
 	box = App->textures->Load("pinball/crate.png");
 	flipperR = App->textures->Load("pinball/flipperR.png");
 	flipperL = App->textures->Load("pinball/flipperL.png");
-	Bonus= App->textures->Load("pinball/Bonus.png");
 	background = App->textures->Load("pinball/pinballUltimate.png");//background
 	BlackRectangle = App->textures->Load("pinball/BlackRectangle.png");
 	springTex = App->textures->Load("pinball/spring.png");
 	swirlTex = App->textures->Load("pinball/swirl.png");
+	//Texture Bonus
+	BonusTex1= App->textures->Load("pinball/Bonus.png");
+	BonusTex2 = App->textures->Load("pinball/Bonus.png");
+	BonusTex3 = App->textures->Load("pinball/Bonus.png");
+	BonusUsedTex = App->textures->Load("pinball/BonusUsed.png");
 
-	//music
+	//music and fx
 	music = App->audio->PlayMusic("pinball/Audio/Chocobo.ogg");
+	headshotFx = App->audio->LoadFx("pinball/Audio/Fx/HeadshotFx.wav");
 
 	map();
 
@@ -148,18 +153,40 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
+	//Bonus
 	//Draw Bonus
-	App->renderer->Blit(Bonus, 58, 415, NULL, 1.0f);
-	App->renderer->Blit(Bonus, 49, 430, NULL, 1.0f);
-	App->renderer->Blit(Bonus, 41, 445, NULL, 1.0f);
+	App->renderer->Blit(BonusTex1, 58, 415, NULL, 1.0f);
+	App->renderer->Blit(BonusTex2, 49, 430, NULL, 1.0f);
+	App->renderer->Blit(BonusTex3, 41, 445, NULL, 1.0f);
+	if (Bonus1 == true) {
 
+		App->renderer->Blit(BonusUsedTex, 58, 415, NULL, 1.0f);
+	}
+	if (Bonus2 == true) {
+
+		App->renderer->Blit(BonusUsedTex, 49, 430, NULL, 1.0f);
+	}
+	if (Bonus3 == true) {
+
+		App->renderer->Blit(BonusUsedTex, 41, 445, NULL, 1.0f);
+	}
+	if (Bonus1 == true && Bonus2 == true && Bonus3 == true) {
+		score += 1000;
+		App->audio->PlayFx(headshotFx);
+		Bonus1 = false;
+		Bonus2 = false;
+		Bonus3 = false;
+	}
+
+	//Anim Swirl
 	int sx, sy;
 	swirlCircle->GetPosition(sx, sy);
-	swirlCircle->body->ApplyAngularImpulse(3, true);
+	swirlCircle->body->ApplyAngularImpulse(20, true);
 	App->renderer->Blit(swirlTex, sx, sy);
 
+
+
 	//Muelle/Spring
-	
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		muellesito->body->ApplyForceToCenter(b2Vec2(0, 250), 1);
@@ -401,23 +428,5 @@ TheMap.add(App->physics->CreateChain(0, 0, mapchain, 106));
 
 void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
-	//int x, y;
-
-	//p2List_item<Sensores*>* Sensores = TiposSensores.getFirst();
-
-	//while (Sensores != NULL) {
-	//	if (bodyA == Sensores->data->Sensor && bodyB->listener == (Module*)App->player) {
-	//		if (Sensores->data->tipo == Sensores::COINS) {
-	//			/*App->audio->PlayFx(bonus_fx);*/
-	//		}
-	//		if (Sensores->data->tipo == Sensores::DEAD) {
-	//			if (App->player->position.y < 837) {
-	//			}
-	//		}
-	//		if (Sensores->data->tipo == Sensores::TUNEL) {
-	//			
-	//		}
-	//	}
-	//}
 	
 }
