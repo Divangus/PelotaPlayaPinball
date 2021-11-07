@@ -514,6 +514,12 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 		App->player->death = true;
 	}
 
+	if (physA == App->scene_intro->BumperSensor)
+	{
+		App->audio->PlayFx(dieFx);
+		App->player->stuck = true;
+	}
+
 	if(physA && physA->listener != NULL)
 		physA->listener->OnCollision(physA, physB);
 

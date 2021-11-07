@@ -22,6 +22,7 @@ public:
 	iPoint position;
 	SDL_Texture* bola;
 	bool death;
+	bool stuck;
 	bool telepR = false;
 	bool telepL = false;
 

@@ -64,6 +64,12 @@ update_status ModulePlayer::Update()
 		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(335), PIXEL_TO_METERS(238)), 0);
 		telepL = false;
 	}
+
+	if (stuck == true)
+	{
+		ball->body->ApplyAngularImpulse(32, true);
+		stuck = false;
+	}
 	/*if (App->player->position.y < 300 && App->player->position.y > 287) {
 					App->player->position.x = 327;
 					App->player->position.y = 199;
