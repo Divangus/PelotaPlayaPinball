@@ -50,8 +50,8 @@ bool ModuleSceneIntro::Start()
 
 	//flippers
 	//right flippers
-	right = App->physics->CreateRectangle(238, 703, 36, 12);
-	right_circle = App->physics->CreateCircleStatic(238, 703, 6);
+	right = App->physics->CreateRectangle(240, 706, 32, 12);
+	right_circle = App->physics->CreateCircleStatic(240, 706, 6);
 
 	b2RevoluteJointDef rightRevJoint;
 	rightRevJoint.bodyA = right->body;
@@ -60,14 +60,14 @@ bool ModuleSceneIntro::Start()
 	rightRevJoint.localAnchorB.Set(0, 0);
 	rightRevJoint.referenceAngle = 0 * DEGTORAD;
 	rightRevJoint.enableLimit = true;
-	rightRevJoint.lowerAngle = -45 * DEGTORAD;
-	rightRevJoint.upperAngle = 45 * DEGTORAD;
+	rightRevJoint.lowerAngle = -30 * DEGTORAD;
+	rightRevJoint.upperAngle = 30 * DEGTORAD;
 
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
 	
 	//left flippers
-	left = App->physics->CreateRectangle(138, 703, 36, 12);
-	left_circle = App->physics->CreateCircleStatic(138, 703, 6);
+	left = App->physics->CreateRectangle(136, 706, 32, 12);
+	left_circle = App->physics->CreateCircleStatic(136, 706, 6);
 
 	b2RevoluteJointDef leftRevJoint;
 	leftRevJoint.bodyA = left->body;
@@ -76,8 +76,8 @@ bool ModuleSceneIntro::Start()
 	leftRevJoint.localAnchorB.Set(0, 0);
 	leftRevJoint.referenceAngle = 0 * DEGTORAD;
 	leftRevJoint.enableLimit = true;
-	leftRevJoint.lowerAngle = -45 * DEGTORAD;
-	leftRevJoint.upperAngle = 45 * DEGTORAD;
+	leftRevJoint.lowerAngle = -30 * DEGTORAD;
+	leftRevJoint.upperAngle = 30 * DEGTORAD;
 
 	b2RevoluteJoint* joint_left = (b2RevoluteJoint*)App->physics->world->CreateJoint(&leftRevJoint);
 
@@ -247,7 +247,9 @@ update_status ModuleSceneIntro::Update()
 	//Black Rectangle
 	App->renderer->Blit(BlackRectangle, 19, 52, NULL, 1.0f);
 
-	App->renderer->Blit(springTex, 370, 635, NULL,1.0f);
+	int springX, springY;
+	muellesito->GetPosition(springX, springY);
+	App->renderer->Blit(springTex, springX, springY, NULL,1.0f, muellesito->GetRotation());
 
 	App->renderer->Blit(flipperR, 190, 700, NULL, 1.0f, right->GetRotation());
 
