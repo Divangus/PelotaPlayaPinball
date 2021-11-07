@@ -98,6 +98,12 @@ bool ModuleSceneIntro::Start()
 	MuelleJointDef.dampingRatio = 0.5f;
 	b2PrismaticJoint* MuelleJoint = (b2PrismaticJoint*)App->physics->world->CreateJoint(&MuelleJointDef);
 
+	//Sensor Teleport
+	TeleportR = App->physics->CreateRectangleSensor(335, 200, 15, 9);
+	TeleportR->listener = this;
+	TeleportL = App->physics->CreateRectangleSensor(56, 297, 27, 9);
+	TeleportL->listener = this;
+
 	//Sensor de muerte
 	
 	Death = App->physics->CreateRectangleSensor(185, 837, 120, 15);
@@ -435,14 +441,7 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 				}
 			}
 			if (Sensores->data->tipo == Sensores::TUNEL) {
-				if (App->player->position.y < 300 && App->player->position.y > 287) {
-					App->player->position.x = 327;
-					App->player->position.y = 199;
-				}
-				if (App->player->position.y < 206 && App->player->position.y > 190) {
-					App->player->position.x = 48;
-					App->player->position.y = 293;
-				}
+				
 			}
 		}
 	}

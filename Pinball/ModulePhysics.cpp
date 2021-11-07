@@ -494,6 +494,14 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
 
+	if (physA == App->scene_intro->TeleportR) {
+
+		App->player->telepR = true;
+	}
+	if (physA == App->scene_intro->TeleportL) {
+
+		App->player->telepL = true;
+	}
 
 	if (physA == App->scene_intro->Bon1|| physA == App->scene_intro->Bon2|| physA == App->scene_intro->Bon3)
 	{

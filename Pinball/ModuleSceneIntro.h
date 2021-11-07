@@ -48,7 +48,8 @@ public:
 	PhysBody* Bon2;
 	PhysBody* Bon3;
 	PhysBody* Death;
-
+	PhysBody* TeleportR;
+	PhysBody* TeleportL;
 	bool sensed;
 
 	//Muelle/Spring

@@ -23,7 +23,7 @@ bool ModulePlayer::Start()
 	/*circles.add(App->physics->CreateCircle(px, py, 9.5));
 	circles*/
 
-	ball= App->physics->CreateCircle(px, py, 9.5);
+	ball= App->physics->CreateCircle(385, 477, 9.5);
 	ball->listener = this;
 	
 
@@ -54,7 +54,24 @@ update_status ModulePlayer::Update()
 	int x, y;
 	ball->GetPosition(x, y);
 	
+	if (telepR == true) {
 
+		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(48), PIXEL_TO_METERS(296)), 0);
+		telepR = false;
+	}
+	if (telepL == true) {
+
+		ball->body->SetTransform(b2Vec2(PIXEL_TO_METERS(327), PIXEL_TO_METERS(205)), 0);
+		telepL = false;
+	}
+	/*if (App->player->position.y < 300 && App->player->position.y > 287) {
+					App->player->position.x = 327;
+					App->player->position.y = 199;
+				}
+				if (App->player->position.y < 206 && App->player->position.y > 190) {
+					App->player->position.x = 48;
+					App->player->position.y = 293;
+				}*/
 	/*c->data->GetPosition(x, y);*/
 	App->renderer->Blit(bola, x, y, NULL, 1.0f, ball->GetRotation());
 	
