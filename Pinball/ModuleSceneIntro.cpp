@@ -73,6 +73,8 @@ bool ModuleSceneIntro::Start()
 	rightRevJoint.upperAngle = 30 * DEGTORAD;
 
 	b2RevoluteJoint* joint_right = (b2RevoluteJoint*)App->physics->world->CreateJoint(&rightRevJoint);
+
+	//Opció 1 per solucionar l’adaptació dels frames: calcula quan temps trigues en fer 1 loop de videojoc i llavors t’esperes fins que mostrin els frames en la velocitat adequada.
 	
 	//left flippers
 	left = App->physics->CreateRectangle(140, 706, 32, 12);
